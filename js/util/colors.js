@@ -1,0 +1,16 @@
+export default colors = {
+  warmGrey: "#999999",
+  carnation: "#ff768c",
+  pinkishGrey: "#bfbfbf",
+  perrywinkle: "#90a7e3",
+  apricot: "#ffa86a",
+  silverFour: "#ebeced",
+  whiteTwo: "#ffffff",
+  coolGrey: "#9da4b3",
+  cloudyBlue: "#d1d8e1",
+  brownishGrey: "#666666",
+  battleshipGrey: "#6a727c",
+  lightTan: "#faefc8",
+  offWhite50: "#80fffadd",
+  beige:'#e4deb9',
+};
