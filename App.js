@@ -6,22 +6,63 @@
  * @flow
  */
 
-import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View} from 'react-native';
+import React, { Component } from "react";
+import { Platform, StyleSheet, Text, View } from "react-native";
 
 const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
+  ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
   android:
-    'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
+    "Double tap R on your keyboard to reload,\n" +
+    "Shake or press menu button for dev menu"
 });
 
 type Props = {};
 export default class App extends Component<Props> {
+  // static propTypes = {
+  //   urlQuery
+  // }
+
+  //1.mounting:
+  //initialzation--->componentWillMount--->render--->componentDidMount
+  //props change:
+  //componentWillReceiveProps--->shouldComponentUpdate--->componentWillUpdate--->render--->componentDidUpdate
+  //state change:
+  //shouldComponentUpdate--->componentWillUpdate--->render--->componentDidUpdate
+  //unmounting:componentWillUnmount
+  constructor() {
+    super()
+    console.log("App", "constructor");
+    //todo:set props & state
+  }
+  componentWillMount = () => {
+    console.log("App", "componentWillMount");
+  };
+  componentDidMount() {
+    console.log("App", "componentDidMount");
+  }
+  shouldComponentUpdate = (nextProps, nextState) => {
+    console.log("App", "shouldComponentUpdate");
+  };
+  componentWillUpdate() {
+    console.log("App", "componentWillUpdate");
+  }
+  componentDidUpdate() {
+    console.log("App", "componentDidUpdate");
+
+  }
+  componentWillReceiveProps() {
+    console.log("App", "componentWillReceiveProps");
+  }
+  componentWillUnmount = () => {
+    console.log("App", "componentWillUnmount");
+  };
+
+
   render() {
+    console.log("App", "render");
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>Welcome to React Native!</Text>
+        <Text style={styles.welcome}>live reload</Text>
         <Text style={styles.instructions}>To get started, edit App.js</Text>
         <Text style={styles.instructions}>{instructions}</Text>
       </View>
@@ -32,18 +73,18 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
   },
   welcome: {
     fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+    textAlign: "center",
+    margin: 10
   },
   instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
 });
