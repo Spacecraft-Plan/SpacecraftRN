@@ -7,7 +7,15 @@
  */
 
 import React, { Component } from "react";
-import { Platform, StyleSheet, Text, View } from "react-native";
+import {
+  Platform,
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+  SectionList
+} from "react-native";
 
 const instructions = Platform.select({
   ios: "Press Cmd+R to reload,\n" + "Cmd+D or shake for dev menu",
@@ -30,7 +38,7 @@ export default class App extends Component<Props> {
   //shouldComponentUpdate--->componentWillUpdate--->render--->componentDidUpdate
   //unmounting:componentWillUnmount
   constructor() {
-    super()
+    super();
     console.log("App", "constructor");
     //todo:set props & state
   }
@@ -48,7 +56,6 @@ export default class App extends Component<Props> {
   }
   componentDidUpdate() {
     console.log("App", "componentDidUpdate");
-
   }
   componentWillReceiveProps() {
     console.log("App", "componentWillReceiveProps");
@@ -57,14 +64,130 @@ export default class App extends Component<Props> {
     console.log("App", "componentWillUnmount");
   };
 
-
   render() {
     console.log("App", "render");
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>live reload</Text>
-        <Text style={styles.instructions}>To get started, edit App.js</Text>
-        <Text style={styles.instructions}>{instructions}</Text>
+      // <View style={styles.container}>
+      <View
+        style={{
+          //row:horizontally; column:vertically
+          flexDirection: "row",
+          // distribution of children
+          justifyContent: "flex-start",
+          // flex: 1,
+          // alignment of children
+          // alignItems: "center",
+          paddingTop: 100,
+          backgroundColor: "#F5FCFF"
+        }}
+      >
+        <SectionList
+          // ItemSeparatorComponent={<Text style={styles.separator} />}
+          style={{ height: 600 }}
+          renderItem={({ item, index, section }) => (
+            <Text key={index}>{item}</Text>
+          )}
+          renderSectionHeader={({ section: { title } }) => (
+            <Text style={{ fontWeight: "bold" }}>{title}</Text>
+          )}
+          sections={[
+            {
+              title: ">>>> basic components",
+              data: ["View", "Text", "Image", "TextInput", "ScrollView"]
+            },
+            {
+              title: ">>>> user interface",
+              data: ["Button", "Picker", "Slider", "Switch"]
+            },
+            { title: ">>>> list views", data: ["FlatList", "SectionList"] },
+            {
+              title: ">>>> ios components",
+              data: [
+                "ActionSheetIOS",
+                "AlertIOS",
+                "DataPickerIOS",
+                "ImagePickerIOS",
+                "NavigatorIOS",
+                "ProgressViewIOS",
+                "PushNotificationIOS",
+                "SegmentedControllIOS",
+                "TabBarIOS"
+              ]
+            },
+            {
+              title: ">>>> android components",
+              data: [
+                "BackHandler",
+                "DataPickerAndroid",
+                "DrawerLayoutAndroid",
+                "PermissionsAndroid",
+                "ProggressBarAndroid",
+                "TimePickerAndroid",
+                "ToastAndroid",
+                "ToolbarAndroid",
+                "ViewPaggerAndroid"
+              ]
+            },
+            {
+              title: ">>>> others",
+              data: [
+                "ActivityIndicator",
+                "Alert",
+                "Animated",
+                "CameraRoll",
+                "Clipboard",
+                "KeyboardAvodingView",
+                "Linking",
+                "Modal",
+                "PixelRatio",
+                "RefreshControl",
+                "StatusBar",
+                "WebView"
+              ]
+            }
+          ]}
+          keyExtractor={(item, index) => item + index}
+        />
+        <Text style={styles.separator} />
+        <FlatList
+          // ItemSeparatorComponent={<Text style={styles.separator} />}
+          data={[
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c",
+            "a",
+            "b",
+            "c"
+          ]}
+          // extraData =
+          // keyExtractor={(item, index) => item.id}
+          renderItem={({ item }) => (
+            <TouchableOpacity>
+              <Text>{item}</Text>
+            </TouchableOpacity>
+          )}
+        />
       </View>
     );
   }
@@ -86,5 +209,15 @@ const styles = StyleSheet.create({
     textAlign: "center",
     color: "#333333",
     marginBottom: 5
+  },
+  separator: {
+    borderBottomColor: "#bbb",
+    borderBottomWidth: StyleSheet.hairlineWidth
   }
+  // wrapper: {
+  //   borderBottomColor: "#bbb",
+  //   borderBottomWidth: StyleSheet.absoluteFill,
+  //   top: 10,
+  //   backgroundColor: "transparent"
+  // }
 });
